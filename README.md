@@ -3,9 +3,7 @@
 Ein interaktives Dashboard zur Visualisierung von SpaceX-Missionsdaten, entwickelt als Semesterprojekt für das Modul Web-Programmierung.
 
 ## 🔗 Live Demo
-Hier klicken: **[Zur Website](https://DEIN-USERNAME.github.io/spacex-explorer/)**
-*(Ersetze DEIN-USERNAME und spacex-explorer mit deinem Link)*
-
+Hier klicken: https://hiprabbit.github.io/spacex-explorer/
 ## 📖 Features
 * **Live Countdown:** Nächster Start in Echtzeit.
 * **Missions-Archiv:** Übersicht vergangener Starts mit Filter (Jahr/Rakete).

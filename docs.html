@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX Explorer - Dokumentation</title>
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/rocket.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🚀 SpaceX Explorer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Geplant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="past.html">Vergangen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rockets.html">Raketen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="stats.html">Statistik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Über SpaceX</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="docs.html">Dokumentation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Projektdokumentation</h1>
+            <p class="lead text-white-50">Web-Programmierung Semesterprojekt</p>
+        </div>
+    </header>
+
+    <main class="container my-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card glass-card">
+                    <div class="card-body">
+                        
+                        <h3 class="text-highlight mb-3">1. Installation & Setup</h3>
+                        <p class="text-white-50">
+                            Die Anwendung ist als client-seitige WebApp (Single Page Application Ansatz) realisiert.
+                        </p>
+                        <ol class="text-white-50 mb-4">
+                            <li>Projektordner entpacken.</li>
+                            <li><code>index.html</code> in einem aktuellen Browser starten.</li>
+                            <li><strong>Wichtig:</strong> Eine aktive Internetverbindung ist erforderlich, da Daten live von externen Schnittstellen geladen werden.</li>
+                        </ol>
+
+                        <hr class="border-secondary my-4">
+
+                        <h3 class="text-highlight mb-3">2. Technische Architektur (Multi-API)</h3>
+                        <p class="text-white-50">
+                            Das Projekt erfüllt die Anforderung der Nutzung mehrerer Datenquellen durch eine hybride Strategie:
+                        </p>
+                        <ul class="text-white-50">
+                            <li class="mb-3">
+                                <strong>API 1: The Space Devs (LL2):</strong><br>
+                                Wird für dynamische Missionsdaten genutzt.
+                                <ul>
+                                    <li>Endpoint <code>/launch/upcoming</code>: Speist den Countdown und die Startseite.</li>
+                                    <li>Endpoint <code>/launch/previous</code>: Liefert Daten für das Archiv und die Jahres-Statistik 2025.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3">
+                                <strong>API 2: SpaceX API v4:</strong><br>
+                                Wird genutzt, um technische Basisdaten und Bilder der Raketenflotte (Falcon 9, Falcon Heavy) zu laden.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Lokalisierung (JS-Mapping):</strong><br>
+                                Da die APIs englische Texte liefern, werden die Beschreibungen clientseitig durch ein JavaScript-Objekt (<code>GERMAN_DESCRIPTIONS</code>) ins Deutsche übersetzt, bevor sie gerendert werden. Starship-Daten werden manuell angereichert, da sie in der alten API fehlen.
+                            </li>
+                        </ul>
+
+                        <hr class="border-secondary my-4">
+                        
+                        <h3 class="text-highlight mb-3">3. Herausforderungen & Limitierungen</h3>
+                        <div class="alert alert-dark border-secondary text-white-50 small">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Aufgrund der Nutzung kostenloser "Free-Tier" APIs gibt es technische Grenzen, die wie folgt behandelt werden:
+                        </div>
+                        <ul class="text-white-50">
+                            <li class="mb-3">
+                                <strong>API Rate Limit (Fehler 429):</strong><br>
+                                Die API erlaubt nur ca. 15 Anfragen pro Stunde. Ein <code>try/catch</code> Block fängt diesen Fehler ab. Die Statistik-Seite fällt dann in einen "Safe-Mode" und zeigt nur die lokal gespeicherten historischen Daten an, damit die Seite nicht abstürzt.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Datenvollständigkeit (Statistik):</strong><br>
+                                Standardmäßig liefert die API nur wenige Datensätze zurück. Damit die Statistik für 2025 annähernd korrekt ist (ca. 100+ Starts), wurde das Abfrage-Limit im Code explizit auf das Maximal mögliche (<code>limit=100</code>) erhöht. Ohne diese Anpassung würden Starts vom Jahresanfang in der Grafik fehlen.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Filter & Historie:</strong><br>
+                                Eine Volltextsuche über alle Starts seit 2008 ist über die API nicht performant möglich. Die Filter (Jahr/Rakete) beschränken sich daher technisch bedingt auf die geladenen Datensätze der jüngeren Vergangenheit (2024–2025). Ältere Flüge (z.B. bis 2011) werden aus Performancegründen nicht initial geladen.
+                            </li>
+                        </ul>
+
+                        <hr class="border-secondary my-4">
+
+                        <h3 class="text-highlight mb-3">4. Erfüllung der Anforderungen</h3>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white">✅ Navigation</h5>
+                                <p class="text-white-50 small">Struktur mit 7 Unterseiten übertrifft die Mindestanforderung von 3 Seiten.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white">✅ 2 API Endpoints</h5>
+                                <p class="text-white-50 small">Aktive Nutzung von SpaceDevs (Upcoming/Previous) und SpaceX v4 (Rockets).</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white">✅ Clean Code</h5>
+                                <p class="text-white-50 small">Moderner ES6+ Code (Async/Await), Kommentare, ausgelagerte Konfigurationen und strikte Trennung von Logik und Design.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white">✅ Responsive</h5>
+                                <p class="text-white-50 small">Vollständige Anpassung an Smartphones & Tablets durch Bootstrap 5 Grid.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-black text-white text-center py-4 mt-auto"><small class="text-white-50">© 2025 SpaceX Explorer.</small></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

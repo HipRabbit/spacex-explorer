@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX Explorer - Vergangen</title>
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/rocket.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🚀 SpaceX Explorer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Geplant</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="past.html">Vergangen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rockets.html">Raketen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="stats.html">Statistik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Über SpaceX</a></li>
+                    <li class="nav-item"><a class="nav-link" href="docs.html">Dokumentation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Missions-Archiv</h1>
+            <p class="lead text-white-50">Die letzten Starts (Historie)</p>
+        </div>
+    </header>
+    <main class="container my-5">
+        <div class="row justify-content-center mb-4 g-2">
+            <div class="col-md-4"><input type="text" id="searchInput" class="form-control search-input" placeholder="Suche Mission..."></div>
+            <div class="col-md-2"><select id="rocketFilter" class="form-select"><option value="all">Alle Raketen</option><option value="Falcon 9">Falcon 9</option><option value="Falcon Heavy">Falcon Heavy</option><option value="Starship">Starship</option></select></div>
+            <div class="col-md-2"><select id="yearFilter" class="form-select"><option value="all">Alle Jahre</option><option value="2025">2025</option><option value="2024">2024</option></select></div>
+        </div>
+        <div id="loading" class="text-center text-white mt-5"><div class="spinner-border text-info" role="status"></div></div>
+        <div class="row g-4" id="past-container"></div>
+        <div class="text-center mt-5"><button id="loadMoreBtn" class="btn btn-outline-light px-5 py-2" style="display:none;" onclick="loadMore()">Mehr laden</button></div>
+    </main>
+    <footer class="bg-black text-white text-center py-4 mt-auto"><small class="text-white-50">© 2025 SpaceX Explorer.</small></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", () => loadPastLaunches());</script>
+</body>
+</html>

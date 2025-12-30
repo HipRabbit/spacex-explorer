@@ -20,14 +20,13 @@ body {
 .navbar-brand { letter-spacing: 0.5px; }
 .navbar-nav .nav-link.active { color: #00a8e8 !important; font-weight: 600; text-shadow: 0 0 10px rgba(0, 168, 232, 0.4); }
 
-/* Glassmorphism Card - FIX: height:100% entfernt */
+/* Glassmorphism Card */
 .glass-card {
     background: rgba(30, 34, 43, 0.7);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-    /* height: 100%;  <-- ENTFERNT, damit About-Box nicht unendlich wird */
     color: #e0e0e0;
     display: flex;
     flex-direction: column;
@@ -54,7 +53,6 @@ body {
     z-index: 1;
 }
 
-/* Badge Fix: Überlagert das Bild nicht mehr falsch */
 .status-badge {
     position: absolute;
     top: 15px;
@@ -65,7 +63,9 @@ body {
     padding: 0.5em 1em;
 }
 
-/* Inputs */
+/* --- Inputs & Kontrast Fixes --- */
+
+/* Inputs Styling */
 .search-input, .form-select {
     background-color: rgba(20, 20, 25, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -78,6 +78,20 @@ body {
     box-shadow: 0 0 15px rgba(0, 168, 232, 0.2);
     outline: none;
 }
+
+/* FIX 1: Platzhalter-Text heller machen */
+.search-input::placeholder {
+    color: #bbbbbb !important; /* Helles Grau für gute Lesbarkeit */
+    opacity: 1; /* Wichtig für Firefox */
+}
+
+/* FIX 2: Doku Info-Boxen (graue Kästen) lesbar machen */
+.alert-dark.text-white-50 {
+    color: #e0e0e0 !important; /* Text deutlich heller */
+    background-color: rgba(60, 64, 75, 0.6) !important; /* Hintergrund etwas anpassen für Kontrast */
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 
 /* Hero Section */
 .hero-section {
@@ -95,7 +109,7 @@ body {
 .hover-white:hover { color: white !important; text-decoration: underline; }
 footer { border-top: 1px solid rgba(255, 255, 255, 0.05); background: #050608 !important; }
 
-/* Orbit CSS */
+/* Orbit CSS (Unverändert) */
 .orbit-container { position: relative; width: 100%; height: 500px; overflow: hidden; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle, #1a1f2e 0%, #0b0d10 70%); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
 .earth { width: 80px; height: 80px; background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe); border-radius: 50%; position: absolute; z-index: 10; box-shadow: 0 0 20px rgba(79, 172, 254, 0.6); }
 .orbit-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, 0.1); top: 50%; left: 50%; transform: translate(-50%, -50%); transition: all 0.5s ease; }

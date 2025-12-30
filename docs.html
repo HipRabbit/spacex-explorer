@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Geplant</a></li>
-                    <li class="nav-item"><a class="nav-link" href="past.html">Vergangen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="past.html">Abgeschlossen</a></li>
                     <li class="nav-item"><a class="nav-link" href="rockets.html">Raketen</a></li>
                     <li class="nav-item"><a class="nav-link" href="stats.html">Statistik</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Über SpaceX</a></li>
@@ -87,9 +87,8 @@
                                 Die API erlaubt nur ca. 15 Anfragen pro Stunde. Ein <code>try/catch</code> Block fängt diesen Fehler ab. Die Statistik-Seite fällt dann in einen "Safe-Mode" und zeigt nur die lokal gespeicherten historischen Daten an, damit die Seite nicht abstürzt.
                             </li>
                             <li class="mb-3">
-                                <strong>Datenvollständigkeit (Statistik):</strong><br>
-                                Standardmäßig liefert die API nur wenige Datensätze zurück. Damit die Statistik für 2025 annähernd korrekt ist (ca. 100+ Starts), wurde das Abfrage-Limit im Code explizit auf das Maximal mögliche (<code>limit=100</code>) erhöht. Ohne diese Anpassung würden Starts vom Jahresanfang in der Grafik fehlen.
-                            </li>
+                                <strong>Datenvollständigkeit (Statistik):</strong><br> 
+                                Standardmäßig liefert die API nur wenige Datensätze zurück. Damit die Statistik für 2025 annähernd korrekt ist (ca. 100+ Starts), wurde das Abfrage-Limit im Code explizit auf das maximal Mögliche <code>limit=100</code> erhöht. Ohne diese Anpassung würden Starts vom Jahresanfang in der Grafik fehlen.
                             <li class="mb-3">
                                 <strong>Filter & Historie:</strong><br>
                                 Eine Volltextsuche über alle Starts seit 2008 ist über die API nicht performant möglich. Die Filter (Jahr/Rakete) beschränken sich daher technisch bedingt auf die geladenen Datensätze der jüngeren Vergangenheit (2024–2025). Ältere Flüge (z.B. bis 2011) werden aus Performancegründen nicht initial geladen.

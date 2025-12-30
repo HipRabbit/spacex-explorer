@@ -55,11 +55,23 @@ const ORBIT_MAP = {
 function createLaunchCard(launch, isUpcoming) {
     const name = launch.name;
     const dateObj = new Date(launch.net);
-    const dateStr = dateObj.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    
+    // --- DATUM KOSMETIK START ---
+    // Standard-Formatierung
+    let dateStr = dateObj.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    
+    // Wenn das Datum der 31.12. ist (Monat 11, da JS Monate von 0-11 zählt),
+    // gehen wir davon aus, dass es ein Platzhalter für das Jahr ist.
+    if (dateObj.getDate() === 31 && dateObj.getMonth() === 11) {
+        dateStr = `Geplant ${dateObj.getFullYear()}`; // Zeigt z.B. "Geplant 2026"
+    }
+    // --- DATUM KOSMETIK ENDE ---
+
     const image = launch.image || 'https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png';
     const locationName = launch.pad ? launch.pad.location.name : "Unbekannt";
     const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationName)}`;
 
+    // ... (Der Rest der Funktion bleibt exakt gleich wie vorher) ...
     let orbitShort = "TBD";
     let orbitFull = "Unbekannt";
     let orbitRing = null;

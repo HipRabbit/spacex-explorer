@@ -1,6 +1,7 @@
-/* Globale Einstellungen */
+/* --- GLOBALE EINSTELLUNGEN --- */
 body {
     background-color: #0b0d10;
+    /* Subtiler Hintergrund-Effekt */
     background-image: radial-gradient(circle at 15% 50%, rgba(15, 23, 42, 0.4), transparent 25%),
                       radial-gradient(circle at 85% 30%, rgba(56, 11, 11, 0.2), transparent 25%);
     color: #e0e0e0;
@@ -8,19 +9,19 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 70px;
+    padding-top: 70px; /* Platz für fixed Navbar */
 }
 
-/* Navbar */
+/* --- NAVIGATION --- */
 .navbar {
     background-color: rgba(11, 13, 16, 0.95) !important;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); /* Milchglas-Effekt für Navbar */
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .navbar-brand { letter-spacing: 0.5px; }
 .navbar-nav .nav-link.active { color: #00a8e8 !important; font-weight: 600; text-shadow: 0 0 10px rgba(0, 168, 232, 0.4); }
 
-/* Glassmorphism Card */
+/* --- GLASSMORPHISM KARTEN --- */
 .glass-card {
     background: rgba(30, 34, 43, 0.7);
     backdrop-filter: blur(16px);
@@ -42,7 +43,7 @@ body {
     padding: 2rem;
 }
 
-/* Images & Status Badge */
+/* --- BILDER & BADGES --- */
 .card-img-custom {
     height: 200px;
     object-fit: contain;
@@ -63,9 +64,7 @@ body {
     padding: 0.5em 1em;
 }
 
-/* --- Inputs & Kontrast Fixes --- */
-
-/* Inputs Styling */
+/* --- INPUTS & BROWSER-KOMPATIBILITÄT --- */
 .search-input, .form-select {
     background-color: rgba(20, 20, 25, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -79,21 +78,19 @@ body {
     outline: none;
 }
 
-/* FIX 1: Platzhalter-Text heller machen */
-.search-input::placeholder {
-    color: #bbbbbb !important; /* Helles Grau für gute Lesbarkeit */
-    opacity: 1; /* Wichtig für Firefox */
-}
+/* FIX: Platzhalter-Farbe für alle Browser erzwingen */
+.search-input::placeholder { color: #bbbbbb !important; opacity: 1; }
+.search-input::-ms-input-placeholder { color: #bbbbbb !important; }
+.search-input::-webkit-input-placeholder { color: #bbbbbb !important; }
 
-/* FIX 2: Doku Info-Boxen (graue Kästen) lesbar machen */
+/* FIX: Lesbarkeit von Info-Boxen in der Doku */
 .alert-dark.text-white-50 {
-    color: #e0e0e0 !important; /* Text deutlich heller */
-    background-color: rgba(60, 64, 75, 0.6) !important; /* Hintergrund etwas anpassen für Kontrast */
+    color: #e0e0e0 !important;
+    background-color: rgba(60, 64, 75, 0.6) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-
-/* Hero Section */
+/* --- HERO SECTION & FOOTER --- */
 .hero-section {
     background: linear-gradient(to bottom, rgba(11,13,16,0.7), rgba(11,13,16,1)), 
                 url('https://farm5.staticflickr.com/4599/38583829295_581f34dd84_b.jpg');
@@ -104,12 +101,11 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Misc */
 .text-highlight { color: #00a8e8 !important; }
 .hover-white:hover { color: white !important; text-decoration: underline; }
 footer { border-top: 1px solid rgba(255, 255, 255, 0.05); background: #050608 !important; }
 
-/* Orbit CSS (Unverändert) */
+/* --- ORBIT VISUALISIERUNG (CSS ANIMATION) --- */
 .orbit-container { position: relative; width: 100%; height: 500px; overflow: hidden; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle, #1a1f2e 0%, #0b0d10 70%); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
 .earth { width: 80px; height: 80px; background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe); border-radius: 50%; position: absolute; z-index: 10; box-shadow: 0 0 20px rgba(79, 172, 254, 0.6); }
 .orbit-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, 0.1); top: 50%; left: 50%; transform: translate(-50%, -50%); transition: all 0.5s ease; }
